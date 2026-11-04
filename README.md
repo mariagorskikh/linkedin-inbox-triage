@@ -9,9 +9,17 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Claude%20Code-skill-2563eb" alt="Claude Code skill">
+  <img src="https://img.shields.io/badge/Claude%20Code-skill-D97757?logo=claude&logoColor=white" alt="Claude Code skill">
   <img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="MIT license">
   <img src="https://img.shields.io/badge/runs-autonomously-2563eb" alt="Runs autonomously">
+  <a href="https://maritime.sh"><img src="https://img.shields.io/badge/by-Maritime-111111" alt="by Maritime"></a>
+</p>
+
+<p align="center"><sub>WORKS WITH</sub><br>
+  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge" alt="LinkedIn">
+  <img src="https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Google Chrome">
+  <img src="https://img.shields.io/badge/Claude%20in%20Chrome-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Claude in Chrome">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
 </p>
 
 A Claude Code skill that goes through your LinkedIn inbox for you. It reads every conversation in Focused and Other, tells real people worth answering apart from sales pitches, job asks, bots and AI-written templates, drafts replies in your own voice, checks each one hard, sends the safe ones, and reports every message it sent in full.
@@ -123,6 +131,15 @@ assets/hero.jpg              README image
 ```
 
 ## Built by Maritime
+
+<p align="center">
+  <a href="https://maritime.sh">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/maritime-dark.png">
+      <img src="assets/maritime-light.png" alt="Maritime logo" height="64">
+    </picture>
+  </a>
+</p>
 
 This skill is open-sourced by [Maritime](https://maritime.sh) (YC F26), the cloud platform that gives every AI agent its own computer: sandboxes, agent boxes that keep their disk, and Linux desktops, Windows desktops and Android phones your agent can see and click. We run this skill ourselves.
 
