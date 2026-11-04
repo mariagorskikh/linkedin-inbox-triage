@@ -1,0 +1,15 @@
+# linkedin-inbox-triage settings
+# Copy to config.yaml in the same folder (git-ignored). On the first run the skill
+# writes config.yaml for you after asking its setup questions.
+# Your voice, priorities and "never send without me" list live in voice.md.
+
+autonomy:
+  mode: autonomous        # autonomous (default): asks setup questions once, then does the whole job and reports after.
+                          # review: stops for the user's okay before each outward action (the old gates).
+  money_needs_approval: true   # always true: anything that spends money waits for the user's yes
+
+limits:
+  max_replies_per_run: 25   # hard cap, also enforced by scripts/send_batch.py
+  batch_size: 3             # people per browser_batch (the script refuses more than 5)
+  pause_seconds: 20         # wait after each person (the script uses at least 10)
+  window_days_max: 30       # how far back a run reads at most

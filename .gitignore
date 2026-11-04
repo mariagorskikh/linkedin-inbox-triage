@@ -3,3 +3,4 @@ last_run.json
 .env
 __pycache__/
 .DS_Store
+config.yaml

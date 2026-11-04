@@ -2,13 +2,18 @@
 """Build Claude in Chrome browser_batch actions that send approved LinkedIn replies safely.
 
 DRY RUN BY DEFAULT. Without --live this only checks the file and prints what it would send.
+In autonomous mode the agent passes --live itself, after the self-review gate in SKILL.md.
 
 Input: a JSON file with a list of replies, each:
   {"row": <#N from dump.js>, "name": "<exact name in the thread header>",
    "text": "<single-paragraph reply>", "approved": true}
 
-Set "approved": true only for replies the user approved, word for word, in chat.
-Replies without it are refused.
+"approved": true means the exact text was approved: by the self-review gate in autonomous
+mode, or by the user in review mode. Replies without it are refused.
+
+A reply that mentions money (a currency amount, price, discount, invoice, paid offer) also
+needs "money_approved": true, which is set only after the user said yes to that exact text
+in chat, in any mode. Replies that mention money without it are refused.
 
 Usage:
   python3 send_batch.py --tab 123456 --file replies.json                 # dry run
@@ -30,9 +35,18 @@ LinkedIn changes its web app often. If selectors stop matching, see references/m
 """
 import argparse
 import json
+import re
 import sys
 
 MAX_PER_RUN = 25
+
+# Anything that looks like money. Matching is deliberately broad: a false hit only means the
+# reply waits for the user's yes.
+MONEY = re.compile(
+    r"[$\u20ac\u00a3\u00a5]\s?\d|\b\d[\d,.]*\s?(k|m)?\s?(usd|eur|gbp|dollars?|euros?|pounds?)\b"
+    r"|\b(price|prices|pricing|discount|discounts|invoice|invoices|coupon|promo code|refund|paid plan|per month|/mo)\b",
+    re.IGNORECASE,
+)
 
 FETCH_LAST = r"""
 const d = JSON.parse(sessionStorage.getItem('liInbox') || 'null');
@@ -165,7 +179,11 @@ def check(reply: dict, banned: list) -> list:
     problems = []
     text = reply.get("text", "")
     if reply.get("approved") is not True:
-        problems.append('not approved ("approved": true is set only after the user approves this exact text in chat)')
+        problems.append('not approved ("approved": true is set only for this exact text, by the self-review gate '
+                        'in autonomous mode or by the user in chat in review mode)')
+    if MONEY.search(text) and reply.get("money_approved") is not True:
+        problems.append('mentions money ("money_approved": true is set only after the user says yes to this exact '
+                        'text in chat, in any mode)')
     if not isinstance(reply.get("row"), int):
         problems.append("row must be an integer (#N from dump.js)")
     if not reply.get("name"):
@@ -186,12 +204,12 @@ def check(reply: dict, banned: list) -> list:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--tab", type=int, required=True, help="Claude in Chrome tabId where collect.js ran")
-    ap.add_argument("--file", required=True, help="JSON list of {row, name, text, approved}")
+    ap.add_argument("--file", required=True, help="JSON list of {row, name, text, approved[, money_approved]}")
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--count", type=int, default=3, help="people per browser_batch (3 is comfortable)")
     ap.add_argument("--pause", type=int, default=20, help="seconds to wait after each person (minimum 10)")
     ap.add_argument("--banned", default="", help="comma-separated phrases to refuse, e.g. from voice.md")
-    ap.add_argument("--live", action="store_true", help="emit real send actions; without it, dry run only")
+    ap.add_argument("--live", action="store_true", help="emit real send actions; without it, dry run only. In autonomous mode the agent passes it after the self-review gate")
     args = ap.parse_args()
 
     with open(args.file) as f:

@@ -1,11 +1,11 @@
 # How to sort the inbox
 
-Sort every conversation that ends with a message the user has not answered into one of the buckets below. Use the user's priorities from `voice.md` to decide what counts as "real and worth it". When in doubt, put it in Borderline and let the user decide.
+Sort every conversation that ends with a message the user has not answered into one of the buckets below. Use the user's priorities from `voice.md` to decide what counts as "real and worth it". When in doubt, put it in Borderline. A borderline case that `voice.md` does not settle is held for the user, not sent.
 
 ## Buckets
 
-- **Deal with this first:** security or bug reports with specifics and no sales ask attached, and existing customers with a problem.
-- **You're mid-conversation (leave to the user):** threads where the user wrote in the last 24 hours, and anything about their plans today or tonight. Never send into these, even with a blanket approval.
+- **Deal with this first:** security or bug reports with specifics and no sales ask attached, and existing customers with a problem. For a security report, the skill sends a short thank-you at most; anything more is held for the user.
+- **You're mid-conversation (leave to the user):** threads where the user wrote in the last 24 hours, and anything about their plans today or tonight. Never send into these, in any mode.
 - **Reply to these:**
   - people the user met (events, dinners, conferences)
   - warm intros through a named mutual
@@ -14,7 +14,7 @@ Sort every conversation that ends with a message the user has not answered into 
   - people with a specific, non-sales question
   - people the user messaged first who answered and are now waiting
 - **Quick one-liners:** congratulations and "nice meeting you" from real people, and personal news from friends and former colleagues.
-- **Your call:** groups the user wants to decide on case by case, often investors and recruiters. Read the message, not the headline: event invites, podcast bookings and vendors with "Ventures" or "Capital" in the name are often not investors.
+- **Your call (never sent autonomously):** groups the user wants to decide on case by case, often investors and recruiters, plus anything on the "never send without me" list in `voice.md` and anything involving money (prices, discounts, paid offers, invoices). Read the message, not the headline: event invites, podcast bookings and vendors with "Ventures" or "Capital" in the name are often not investors.
 - **Borderline:** partnership asks from people the user met, sharp questions from strangers, speaking invites, strong job candidates, leads that went cold.
 - **No reply needed:**
   - the last message is already the user's
@@ -57,7 +57,7 @@ A real bug or security report has specifics (which page, which key, what request
 Short or cryptic previews often make sense only in context. Examples:
 
 - "sam@northwind.example" might answer the user's own question "what's your email?".
-- "403 buzz" might be a door code for an event the user attended.
+- "7731#" might be a building entry code for an event the user attended.
 - "hi" might be someone the user messaged first.
 
 Always run threads.js on these before sorting.

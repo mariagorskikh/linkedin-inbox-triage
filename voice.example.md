@@ -20,6 +20,15 @@ List the kinds of people you want surfaced first, in order.
 
 Always skip: <e.g. agencies, recruiters, lead-gen offers>
 
+## Never send without me
+
+The skill drafts these but never sends them on its own, even in autonomous mode. It lists them in the report for you.
+
+- Investors
+- Recruiters
+- Anything about money: prices, discounts, paid offers, invoices
+- <add your own, e.g. press, anyone from my current employer>
+
 ## Links I share
 
 - Booking link (only for people who look legitimate): <https://example.com/book>
@@ -50,7 +59,7 @@ Paste 5 to 10 real replies you sent on LinkedIn. One line of situation, then you
 - Met at a conference, asked for a call.
   "Hi Sam! Great meeting you at the summit too. Would love to chat, here's my calendar: https://example.com/book"
 - Intro through a mutual, asked for my email. Message was a week old.
-  "Hi Priya, so sorry for the slow reply, and thank you (and Dana)! Best email is name@example.com, would love the intro."
+  "Hi Priya, thanks so much for reaching out, and sorry this sat for a few days! Best email is name@example.com, happy to connect."
 - Congratulated me on a launch.
   "Thank you Morgan!! Really appreciate it, hope things at Bluefin are going great!"
 - Asked if I am hiring.
